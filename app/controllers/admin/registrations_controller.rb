@@ -36,27 +36,26 @@ module Admin
       end
     end
 
-    def present
-      @registration.attended = true
-      if @registration.save
-        flash[:notice] = "#{@user.email} has attended"
-        redirect_to admin_conference_registrations_path(@conference.short_title)
-      else
-        flash[:notice] = "Update Attended for #{@user.email} failed!" \
-                         "#{@registration.errors.full_messages.join('. ')}"
-        redirect_to admin_conference_registrations_path(@conference.short_title)
-      end
-    end
+    def toggle_attendance
+      if @registration.attended == true
 
-    def absent
-      @registration.attended = false
-      if @registration.save
-        flash[:notice] = "#{@user.email} has not attended"
-        redirect_to admin_conference_registrations_path(@conference.short_title)
+        @registration.attended = false
+        if @registration.save
+          flash[:notice] = "#{@user.email} has attended"
+          redirect_to admin_conference_registrations_path(@conference.short_title)
+        else
+          flash[:notice] = "Update Attended for #{@user.email} failed!" \
+                           "#{@registration.errors.full_messages.join('. ')}"
+        end
       else
-        flash[:notice] = "Update Attended for #{@user.email} failed!" \
-                         "#{@registration.errors.full_messages.join('. ')}"
-        redirect_to admin_conference_registrations_path(@conference.short_title)
+        @registration.attended = true
+        if @registration.save
+          flash[:notice] = "#{@user.email} has not attended"
+          redirect_to admin_conference_registrations_path(@conference.short_title)
+        else
+          flash[:notice] = "Update Attended for #{@user.email} failed!" \
+                           "#{@registration.errors.full_messages.join('. ')}"
+        end
       end
     end
 
