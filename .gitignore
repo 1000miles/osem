@@ -29,3 +29,4 @@ pickle-email-*.html
 /bundle
 /doc/app
 .ruby-version
+/features/
