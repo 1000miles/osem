@@ -53,11 +53,8 @@
                         on_text: 'Present',
                         off_text: 'Absent' }
               .btn-group
-<<<<<<< HEAD
                 = link_to "#{registration.attended}", toggle_attendance_admin_conference_registration_path(@conference.short_title, id: registration),
                 method: :patch, class: 'btn btn-primary'
-=======
->>>>>>> a73ca335a9bd739678ad2dfcf35e0e09bdad4fb8
                 = link_to 'Edit', edit_admin_conference_registration_path(@conference.short_title, id: registration),
                 method: :get, class: 'btn btn-primary'
                 = link_to 'Delete', admin_conference_registration_path(@conference.short_title, registration),

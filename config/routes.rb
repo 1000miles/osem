@@ -36,10 +36,6 @@ Osem::Application.routes.draw do
       resources :registrations, except: [:create, :new] do
         member do
           patch :toggle_attendance
-<<<<<<< HEAD
-=======
-
->>>>>>> a73ca335a9bd739678ad2dfcf35e0e09bdad4fb8
         end
       end
 
