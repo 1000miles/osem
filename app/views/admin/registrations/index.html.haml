@@ -44,9 +44,20 @@
               %td
                 = link_to 'Questions','#', class: 'btn btn-success question-btn', 'data-id' => index, 'data-name' => registration.name
             %td
+              = check_box_tag "#{@conference.short_title}_#{registration.id}", registration.id, registration.attended,
+                class: 'switch-checkbox', method: :patch,
+                url: toggle_attendance_admin_conference_registration_path(@conference.short_title, id: registration.id)+"?attended=",
+                data: { size: "small",
+                        on_color: 'success',
+                        off_color: 'warning',
+                        on_text: 'Present',
+                        off_text: 'Absent' }
               .btn-group
+<<<<<<< HEAD
                 = link_to "#{registration.attended}", toggle_attendance_admin_conference_registration_path(@conference.short_title, id: registration),
                 method: :patch, class: 'btn btn-primary'
+=======
+>>>>>>> a73ca335a9bd739678ad2dfcf35e0e09bdad4fb8
                 = link_to 'Edit', edit_admin_conference_registration_path(@conference.short_title, id: registration),
                 method: :get, class: 'btn btn-primary'
                 = link_to 'Delete', admin_conference_registration_path(@conference.short_title, registration),

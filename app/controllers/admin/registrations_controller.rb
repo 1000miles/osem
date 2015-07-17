@@ -37,6 +37,7 @@ module Admin
     end
 
     def toggle_attendance
+<<<<<<< HEAD
       if @registration.attended == true
 
         @registration.attended = false
@@ -56,6 +57,13 @@ module Admin
           flash[:notice] = "Update Attended for #{@user.email} failed!" \
                            "#{@registration.errors.full_messages.join('. ')}"
         end
+=======
+      @registration.attended = !@registration.attended
+      if @registration.save
+        head :ok
+      else
+        head :unprocessable_entity
+>>>>>>> a73ca335a9bd739678ad2dfcf35e0e09bdad4fb8
       end
     end
 
@@ -68,13 +76,13 @@ module Admin
     def registration_params
       params.require(:registration).
           permit(
-          :conference_id, :arrival, :departure,
-          :volunteer,
-          vchoice_ids: [], qanswer_ids: [],
-          qanswers_attributes: [],
-          user_attributes: [
-              :id, :name, :tshirt, :mobile, :volunteer_experience, :languages,
-              :nickname, :affiliation ])
+              :conference_id, :arrival, :departure,
+              :volunteer,
+              vchoice_ids: [], qanswer_ids: [],
+              qanswers_attributes: [],
+              user_attributes: [
+                  :id, :name, :tshirt, :mobile, :volunteer_experience, :languages,
+                  :nickname, :affiliation])
     end
   end
 end
