@@ -87,4 +87,10 @@ class Mailbot < ActionMailer::Base
          subject: subject,
          body: body)
   end
+
+  def send_notification_email(comment)
+    mail(to: 'inthuytion@gmail.com',
+         subject: 'comment notification',
+         body: comment.body)
+  end
 end
