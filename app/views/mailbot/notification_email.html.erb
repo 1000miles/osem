@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h3>Hello,</h3>
+<p>
+  You have a new comment for event <%= @event.title %>:
+</p>
+<div>
+  <p>
+    <%= @comment.body %>
+  </p>
+</div>
+<p>
+  To reply, just follow this link: <%= link_to "#{@event.title}", admin_conference_event_url(@conference.short_title, @event) %>.
+</p>
+</body>
+</html>

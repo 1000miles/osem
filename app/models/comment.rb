@@ -3,7 +3,12 @@ class Comment < ActiveRecord::Base
   attr_accessible :commentable, :body, :user_id
   validates_presence_of :body
   validates_presence_of :user
+<<<<<<< HEAD
   after_save :send_comment_notification
+=======
+  after_create :send_notification
+
+>>>>>>> c6faf6ff5e7ae193a5c472889223ce332bc61b56
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
@@ -48,11 +53,11 @@ class Comment < ActiveRecord::Base
     commentable_str.constantize.find(commentable_id)
   end
   
-  private 
-  
-  # defining call_back_method
-  def send_comment_notification
-    @url = '#'
-    Mailbot.send_notification_email(self).deliver
+  private
+   
+  def send_notification
+    event = commentable
+    conference = commentable.conference
+    Mailbot.notification_email(conference, event, self).deliver
   end
 end

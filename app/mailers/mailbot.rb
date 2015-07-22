@@ -80,6 +80,19 @@ class Mailbot < ActionMailer::Base
     end
   end
 
+  def notification_email(conference, event, comment)
+    recipients = User.joins(:roles).where('roles.name IN (?)', [:organizer, :cfp]).where('roles.resource_id = ?', conference.id).pluck(:email).uniq
+    @conference = conference
+    @comment = comment
+    @event = event
+    recipients.each do |recipient|
+      mail(to: recipient,
+           from: conference.contact.email,
+           subject: "New comment posted for #{@event.title}")
+    end
+  end
+
+
   def build_email(conference, to, subject, body)
     mail(to: to,
          from: conference.contact.email,
