@@ -14,7 +14,7 @@
   </p>
 </div>
 <p>
-  To reply, just follow this link: <%= @url %>.
+  To reply, just follow this link: <%= link_to "#{@event.title}", admin_conference_event_url(@conference.short_title, @event) %>.
 </p>
 </body>
 </html>
