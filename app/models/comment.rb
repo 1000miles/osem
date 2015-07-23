@@ -50,6 +50,7 @@ class Comment < ActiveRecord::Base
   
   private
    
+  # Send notification email about a comment in an event
   def send_notification
     event = commentable
     conference = commentable.conference

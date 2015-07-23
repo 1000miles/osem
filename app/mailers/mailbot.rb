@@ -88,7 +88,7 @@ class Mailbot < ActionMailer::Base
     recipients.each do |recipient|
       mail(to: recipient,
            from: conference.contact.email,
-           subject: "New comment posted for #{@event.title}")
+           subject: "A new comment is waiting for you in event: #{@event.title}")
     end
   end
 
@@ -101,9 +101,4 @@ class Mailbot < ActionMailer::Base
          body: body)
   end
 
-  def send_notification_email(comment)
-    mail(to: 'inthuytion@gmail.com',
-         subject: 'comment notification',
-         body: comment.body)
-  end
 end
