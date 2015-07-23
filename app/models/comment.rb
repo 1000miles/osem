@@ -52,12 +52,8 @@ class Comment < ActiveRecord::Base
   end
 
   private
-<<<<<<< HEAD
 
-=======
-   
   # Send notification email about a comment in an event
->>>>>>> 6d151dd... create mail view with haml code
   def send_notification
     Mailbot.delay.send_notification_email_for_comment(self)
   end

@@ -2,18 +2,16 @@
 %html
   %head
     %meta{ charset: 'utf-8' }
-  %css
-    %header
     %title { 'Notification E-Mail about a comment' }
   %body
     %p
-    %div#comment.body
-      %p
-      %h3= "Hi there #{:name}"
+    .comment
+      %p Hi there 
+      %h1= "#{@user.name}" 
     %div
       %p= "You have a new comment for event: #{@event.title}"
       %br
-    %div= "Comment by #{:name}"
+    %div= "Comment by: " + "#{@comment.user.name}"
     %p
       %i= @comment.body
     %p To see and reply to this comment, please go to 
