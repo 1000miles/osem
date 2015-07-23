@@ -51,7 +51,7 @@ class Comment < ActiveRecord::Base
   private
    
   # Send notification email about a comment in an event
-  def send_notification
+  def send_notification(comment)
     event = commentable
     conference = commentable.conference
     Mailbot.notification_email(conference, event, self).deliver
