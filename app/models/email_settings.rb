@@ -79,4 +79,9 @@ class EmailSettings < ActiveRecord::Base
     end
     text
   end
+
+  def generate_email_on_comment_create()
+    values = get_values(conference, user)
+    parse_template(comment_update_template, values)
+  end
 end
