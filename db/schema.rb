@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730133646) do
+ActiveRecord::Schema.define(version: 20150803100144) do
 
   create_table "ahoy_events", force: true do |t|
     t.uuid     "visit_id"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 20150730133646) do
     t.text     "call_for_papers_schedule_public_template"
     t.text     "call_for_papers_dates_updates_template"
     t.boolean  "send_on_comment",                                default: true
-    t.string   "comment_subject",                                default: "A new comment has been posted for {eventitle}"
+    t.string   "comment_subject",                                default: "A new comment has been posted for {eventtitle}"
     t.text     "comment_template",                               default: "Dear {name},\n\n  \tUser {comment_user} posted a new comment for event {eventtitle} of {conference}.\n\n  \t\" {comment_body}\" \n\n  \tTo reply to this comment, please go to {comment_reply}\n\n  \tKind regards,\n  \tYour {conference}\n  \t"
   end
 
