@@ -11,8 +11,13 @@ class User < ActiveRecord::Base
 
   before_create :setup_role
 
+<<<<<<< HEAD
   # add scope
   scope :comment_notifiable, ->(conference) {joins(:roles).where('roles.name IN (?)', [:organizer, :cfp]).where('roles.resource_type = ? AND roles.resource_id = ?', 'Conference', conference.id)}
+=======
+  # add scope for mailbot.rb
+  scope :comment_notifiable, ->(conference) {joins(:roles).where('roles.name IN (?)', [:organizer, :cfp]).where('roles.resource_id = ?', conference.id)}
+>>>>>>> 8f03c3a... add changes to repo to see the errors
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
