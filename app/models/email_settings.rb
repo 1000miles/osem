@@ -64,8 +64,6 @@ class EmailSettings < ActiveRecord::Base
       h['comment_reply'] = Rails.application.routes.url_helpers.admin_conference_event_url(
                             conference.short_title, event, host: CONFIG['url_for_emails']) # show link & title of conference
     end
-
-    h
   end
 
   def generate_event_mail(event, event_template)
