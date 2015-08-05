@@ -11,8 +11,7 @@ class EmailSettings < ActiveRecord::Base
                   :send_on_call_for_papers_dates_updates, :send_on_call_for_papers_schedule_public,
                   :call_for_papers_schedule_public_subject, :call_for_papers_dates_updates_subject,
                   :call_for_papers_schedule_public_template, :call_for_papers_dates_updates_template,
-                  # make template for comment after create and comment after update accessible
-                  :comment_subject, :comment_template, :send_on_comment
+                  :comment_subject, :comment_template
 
   def get_values(conference, user, event = nil, comment = nil)
     h = {
@@ -51,7 +50,7 @@ class EmailSettings < ActiveRecord::Base
       h['registration_end_date'] = conference.registration_period.end_date
     end
 
-    if !event.nil?
+    if event
       h['eventtitle'] = event.title
       h['proposalslink'] = Rails.application.routes.url_helpers.conference_proposal_index_url(
                            conference.short_title, host: CONFIG['url_for_emails'])
@@ -64,6 +63,9 @@ class EmailSettings < ActiveRecord::Base
       h['comment_reply'] = Rails.application.routes.url_helpers.admin_conference_event_url(
                             conference.short_title, event, host: CONFIG['url_for_emails']) # show link & title of conference
     end
+
+    h
+
   end
 
   def generate_event_mail(event, event_template)
@@ -93,9 +95,10 @@ class EmailSettings < ActiveRecord::Base
   end
 
 # generate an email when a comment is posted & pass all related parameters
-  def generate_email_on_comment_create(conference, event, comment, user, comment_template)
+  def generate_email_on_comment_create(conference, event, comment, user)
     values = get_values(conference, user, event, comment) # get the values with related parameters
     # parse the template with template name & given values
+    comment_template = File.read("#{Rails.root}/app/views/admin/emails/comment_template.text.erb")
     parse_template(comment_template, values)
   end
 

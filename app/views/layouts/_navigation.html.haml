@@ -24,6 +24,10 @@
               %b.caret
             %ul.dropdown-menu
               = render 'layouts/user_menu'
+          / comment notifcation button
+          %li.dropdown
+            %a.dropdown-toggle{"aria-controls" => "notifications", "data-toggle" => "button", :href => "#notifications", class: "btn btn-primary", id: "unread-notifications"} Notifcations
+
       - else
         %ul.nav.navbar-nav.navbar-right
           - if CONFIG['authentication']['ichain']['enabled']

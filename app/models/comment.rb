@@ -52,6 +52,6 @@ class Comment < ActiveRecord::Base
    
   # Send notification email about a new comment in an event
   def send_notification
-      Mailbot.send_email_for_new_comment(self).deliver
+      Mailbot.delay.send_email_for_new_comment(self)
   end
 end
