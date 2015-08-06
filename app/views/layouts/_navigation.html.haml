@@ -24,9 +24,18 @@
               %b.caret
             %ul.dropdown-menu
               = render 'layouts/user_menu'
+        %ul.nav.navbar-nav.navbar-right
           / comment notifcation button
           %li.dropdown
-            %a.dropdown-toggle{"aria-controls" => "notifications", "data-toggle" => "button", :href => "#notifications", class: "btn btn-primary", id: "unread-notifications"} Notifcations
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#unread_comments", id: "unread-comments"} 
+              - if unread_comments 
+                Notifications (#{unread_comments.length})
+                %b.caret  
+                %ul.dropdown-menu
+                  = render partial: 'layouts/unread_comment', collection: unread_comments
+              - else 
+                Notifications (0)
+
 
       - else
         %ul.nav.navbar-nav.navbar-right
