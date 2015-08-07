@@ -27,13 +27,16 @@
         %ul.nav.navbar-nav.navbar-right
           / comment notifcation button
           %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#unread_comments", id: "unread-comments"} 
-              - if unread_comments 
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#unread_comments", id: "unread-comments"}
+              - if unread_comments
                 Notifications (#{unread_comments.length})
-                %b.caret  
+                %b.caret
                 %ul.dropdown-menu
+                  %header.h5 New comments for:
                   = render partial: 'layouts/unread_comment', collection: unread_comments
-              - else 
+                  %p
+                  %li= link_to 'See All Comments', root_path
+              - else
                 Notifications (0)
 
 

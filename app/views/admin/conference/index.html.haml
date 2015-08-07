@@ -75,6 +75,10 @@
         %a{:href=>"#recent_submissions", "data-toggle"=>"tab"}
           %span.fa.fa-file-text
           Recent Submissions
+      %li
+        %a{:href=>"#unread_comments", "data-toggle"=>"tab"}
+          %span.fa.fa-file-text
+          Comments
     .tab-content
       .tab-pane.active#recent_user
         = render partial: 'recent_users', locals: {recent_users: @recent_users}
@@ -82,5 +86,7 @@
         = render partial: 'recent_registrations', locals: {recent_registrations: @recent_registrations}
       .tab-pane#recent_submissions
         = render partial: 'recent_submissions', locals: {recent_events: @recent_events}
+      .tab-pane#unread_comments
+        = render partial: 'unread_comments', locals: {unread_comments: @unread_comments}
   .col-md-4
     = render partial: 'top_submitter', locals: {top_submitter: @top_submitter}
