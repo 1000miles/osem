@@ -1,0 +1,5 @@
+%h1 Comments
+%p
+%ol
+- @comments.each do |comment|
+  %li= link_to("#{comment.commentable.title}", admin_conference_event_url(comment.commentable.conference.short_title, comment.commentable_id))

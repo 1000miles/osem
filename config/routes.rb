@@ -9,12 +9,13 @@ Osem::Application.routes.draw do
                    omniauth_callbacks: 'users/omniauth_callbacks' },
                path: 'accounts'
   end
-  
+
   resources :users, except: [:new, :index, :create, :destroy]
 
   namespace :admin do
     resources :users
     resources :people
+    resources :comments, only: [:show, :index] # add route for comments
     resources :conference do
       member do
         get :roles
