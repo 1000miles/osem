@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module Admin
   class CommentsController < Admin::BaseController
     load_and_authorize_resource
@@ -24,5 +25,12 @@ module Admin
     def grouped_comments(remarks)
       remarks.group_by{ |comment| comment.commentable.conference }.map {|conference, comments| [conference, comments.group_by{|comment| comment.commentable}]}.to_h
     end
+=======
+class Admin::CommentsController < Admin::BaseController
+  load_and_authorize_resource
+  
+  def index
+    @comments = Comment.all
+>>>>>>> 9f12201... create comments page & add routes
   end
 end

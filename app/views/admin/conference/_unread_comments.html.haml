@@ -1,0 +1,11 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th Comments
+      - unread_comments.each do |comment|
+        %tbody
+          %tr
+            %td= comment.body
+
+
