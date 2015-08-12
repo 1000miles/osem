@@ -1,5 +1,23 @@
 %h1 Comments
-%p
-%ol
-- @comments.each do |comment|
-  %li= link_to("#{comment.commentable.title}", admin_conference_event_url(comment.commentable.conference.short_title, comment.commentable_id))
+%br
+.row
+  .col-lg-12
+    %ul.nav.nav-tabs#recentTable
+      %li.active
+        %a{:href=>"#unread_comments", "data-toggle"=>"tab"}
+          %span.fa.fa-comment
+          Unread
+      %li
+        %a{:href=>"#all_comments", "data-toggle"=>"tab"}
+          %span.fa.fa.fa-comments
+          All
+      %li
+        %a{:href=>"#posted_comments", "data-toggle"=>"tab"}
+          %span.fa.fa.fa-comments-o
+          Posted
+
+    .tab-content
+      .tab-pane.active#unread_comments
+        = render partial: 'unread_comments', locals: {unread_comments: @unread_comments}
+      .tab-pane#all_comments
+      .tab-pane#posted_comments
