@@ -28,18 +28,18 @@
           %ul.nav.navbar-nav.navbar-right
             / comment notifcation button
             %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#unread_comments", id: "unread-comments"}
-                - if unread_comments
-                  Notifications (#{unread_comments.length})
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "unread-comments"}
+                - if unread_notifications(current_user) && !unread_notifications(current_user).empty?
+                  Notifications (#{unread_notifications(current_user).length})
                   %b.caret
                   %ul.dropdown-menu
                     %header.h5 New comments for:
-                    = render partial: 'layouts/unread_comment', collection: unread_comments
-                    %p
+                    - unread_notifications(current_user).each do |comment|
+                      %li= link_to("#{comment.commentable.title}", admin_conference_event_url(comment.commentable.conference.short_title, comment.commentable_id))
                     %li= link_to 'See All Comments', admin_comments_path
+
                 - else
                   Notifications (0)
-
 
       - else
         %ul.nav.navbar-nav.navbar-right

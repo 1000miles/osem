@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803100144) do
+ActiveRecord::Schema.define(version: 20150813133801) do
 
   create_table "ahoy_events", force: true do |t|
     t.uuid     "visit_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150803100144) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
+    t.boolean  "unread",                      default: false
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"

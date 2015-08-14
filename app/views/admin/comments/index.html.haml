@@ -5,19 +5,21 @@
     %ul.nav.nav-tabs#recentTable
       %li.active
         %a{:href=>"#unread_comments", "data-toggle"=>"tab"}
-          %span.fa.fa-comment
+          %span.fa.fa-comment.fa-2x
           Unread
       %li
         %a{:href=>"#all_comments", "data-toggle"=>"tab"}
-          %span.fa.fa.fa-comments
+          %span.fa.fa.fa-comments.fa-2x
           All
       %li
         %a{:href=>"#posted_comments", "data-toggle"=>"tab"}
-          %span.fa.fa.fa-comments-o
+          %span.fa.fa.fa-comments-o.fa-2x
           Posted
 
     .tab-content
       .tab-pane.active#unread_comments
         = render partial: 'unread_comments', locals: {unread_comments: @unread_comments}
       .tab-pane#all_comments
+        = render partial: 'all_comments', locals: {comments: @comments}
       .tab-pane#posted_comments
+        = render partial: 'posted_comments', locals: {posted_comments: @posted_comments}

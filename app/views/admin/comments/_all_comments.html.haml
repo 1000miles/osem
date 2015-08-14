@@ -1,4 +1,4 @@
-- if @unread_comments && !@unread_comments.empty?
+- if @comments && !@comments.empty?
   .table-responsive
     %table.table
       %thead
@@ -9,7 +9,7 @@
           %th Event
           %th Conference
           %th Post Date
-        - @unread_comments.each_with_index do |comment, index|
+        - @comments.each_with_index do |comment, index|
           %tbody
             %tr
               %td= index + 1
