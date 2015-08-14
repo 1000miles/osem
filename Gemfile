@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 # as web framework
 gem 'rails', '~> 4.1'
 
