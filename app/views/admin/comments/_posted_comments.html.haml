@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - @posted_comments.each do |conference, events|
   .well
     %p.h4= conference.title
@@ -14,3 +15,31 @@
               %li
                 %h5.strong Created at: #{comment.created_at}
             %li= comment.body
+=======
+- if @posted_comments && !@posted_comments.empty?
+  .table-responsive
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Submitter
+          %th Comment
+          %th Event
+          %th Conference
+          %th Post Date
+        - @posted_comments.each_with_index do |comment, index|
+          %tbody
+            %tr
+              %td= index + 1
+              - if comment.user
+                %td= link_to comment.user.name
+              - else
+                %td Unknown Submitter
+              %td= link_to h(truncate(comment.body, :length => 150)), admin_conference_event_path(comment.commentable.conference.short_title, comment.commentable_id)
+              %td= link_to comment.commentable.title, admin_conference_event_path(comment.commentable.conference.short_title, comment.commentable)
+              %td= link_to comment.commentable.conference.title, admin_conference_path(comment.commentable.conference.short_title)
+              %td= comment.created_at
+- else
+  %h5.text-warning.text-center
+    No comments!
+>>>>>>> fd5f980... add comments partials (unread, all, posted) to comments tab panes view

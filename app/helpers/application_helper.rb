@@ -278,8 +278,4 @@ module ApplicationHelper
       new_user_registration_path
     end
   end
-
-  def unread_notifications(user)
-    Comment.accessible_by(current_ability).find_since_last_login(user).limit(5)
-  end
 end
