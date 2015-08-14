@@ -40,6 +40,8 @@ class Admin::CommentsController < Admin::BaseController
 >>>>>>> fd5f980... add comments partials (unread, all, posted) to comments tab panes view
   end
 
+  private
+
   def unread
     Comment.where(created_at: (current_user.last_sign_in_at..Time.now)).order(created_at: :desc)
   end
@@ -47,6 +49,5 @@ class Admin::CommentsController < Admin::BaseController
   def posted
     Comment.where(user_id: current_user.id).order(created_at: :desc)
   end
-
 
 end
