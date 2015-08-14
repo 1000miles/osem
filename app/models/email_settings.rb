@@ -59,7 +59,7 @@ class EmailSettings < ActiveRecord::Base
     # if there is a comment for an event, apply the hash for comment parts (body, user, reply) which is needed in email view
     if comment
       h['comment_body'] = comment.body # show comment within comment body
-      h['comment_user'] = comment.user.name # show user name of commentor
+      h['comment_user'] = comment.user.name # show user name of commenter
       h['comment_reply'] = Rails.application.routes.url_helpers.admin_conference_event_url(
                             conference.short_title, event, host: CONFIG['url_for_emails']) # show link & title of conference
     end
