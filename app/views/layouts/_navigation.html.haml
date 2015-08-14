@@ -24,17 +24,17 @@
               %b.caret
             %ul.dropdown-menu
               = render 'layouts/user_menu'
-        - if can? :manage, Conference
+        - if can? :manage, Comment
           %ul.nav.navbar-nav.navbar-right
             / comment notifcation button
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "unread-comments"}
-                - if unread_notifications(current_user) && !unread_notifications(current_user).empty?
+                - if unread_notifications(current_user)
                   Notifications (#{unread_notifications(current_user).length})
                   %b.caret
                   %ul.dropdown-menu
                     %header.h5 New comments for:
-                    - unread_notifications(current_user).each do |comment|
+                    - unread_notifications(current_user).limit(5).each do |comment|
                       %li= link_to("#{comment.commentable.title}", admin_conference_event_url(comment.commentable.conference.short_title, comment.commentable_id))
                     %li= link_to 'See All Comments', admin_comments_path
 
