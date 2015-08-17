@@ -1,4 +1,6 @@
+%h1 Comments (#{unread_notifications(current_user).length})
 - if @unread_comments && !@unread_comments.empty?
+  %br
   .table-responsive
     %table.table
       %thead

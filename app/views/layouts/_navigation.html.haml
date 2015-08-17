@@ -18,7 +18,7 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "current-user-detail"}
               - if not current_user.name.blank?
                 #{current_user.name}
-              -else
+              - else
                 #{current_user.email}
               = image_tag(current_user.gravatar_url(size: '18'), title: "Yo #{current_user.name}!", :alt => '')
               %b.caret

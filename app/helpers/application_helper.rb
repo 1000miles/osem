@@ -282,4 +282,8 @@ module ApplicationHelper
   def unread_notifications(user)
     @unread_notifications = Comment.where(created_at:(user.last_sign_in_at..Time.now)).order(created_at: :desc) if can? :manage, Comment
   end
+
+  def posted_comments(user)
+    @posted_comments = Comment.where(user_id: current_user.id).order(created_at: :desc) if can? :manage, Comment
+  end
 end
