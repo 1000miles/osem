@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 - @posted_comments.each do |conference, events|
   .well
     %p.h4= conference.title
@@ -16,13 +17,17 @@
                 %h5.strong Created at: #{comment.created_at}
             %li= comment.body
 =======
+=======
+%h1 Comments (#{posted_comments(current_user).length})
+%br
+>>>>>>> 75da0a5... refactor & add improvements to partials of comment notifications
 - if @posted_comments && !@posted_comments.empty?
   .table-responsive
     %table.table
       %thead
         %tr
           %th #
-          %th Your Posted Comments
+          %th Your Comments
           %th Event
           %th Conference
           %th Post Date
