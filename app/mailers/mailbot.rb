@@ -110,7 +110,8 @@ class Mailbot < ActionMailer::Base
          from: conference.contact.email,
          reply_to: conference.contact.email,
          subject: subject,
-         body: body)
+         body: body
+        )
   end
 end
 

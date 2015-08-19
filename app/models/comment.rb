@@ -11,7 +11,6 @@ class Comment < ActiveRecord::Base
 
   belongs_to :commentable, polymorphic: true
 
-
   # NOTE: Comments belong to a user
   belongs_to :user
 
@@ -53,7 +52,6 @@ class Comment < ActiveRecord::Base
 
   private
 
-  # Send notification email about a comment in an event
   def send_notification
     Mailbot.delay.send_notification_email_for_comment(self)
   end
