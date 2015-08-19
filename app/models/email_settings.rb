@@ -55,7 +55,7 @@ class EmailSettings < ActiveRecord::Base
       h['proposalslink'] = Rails.application.routes.url_helpers.conference_proposal_index_url(
                            conference.short_title, host: CONFIG['url_for_emails'])
     end
-    
+
     # if there is a comment for an event, apply the hash for comment parts (body, user, reply) which is needed in email view
     if comment
       h['comment_body'] = comment.body # show comment within comment body
@@ -65,7 +65,6 @@ class EmailSettings < ActiveRecord::Base
     end
 
     h
-
   end
 
   def generate_event_mail(event, event_template)
@@ -101,5 +100,4 @@ class EmailSettings < ActiveRecord::Base
     comment_template = File.read("#{Rails.root}/app/views/admin/emails/comment_template.text.erb")
     parse_template(comment_template, values)
   end
-
 end

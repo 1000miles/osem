@@ -11,7 +11,6 @@ class Comment < ActiveRecord::Base
 
   belongs_to :commentable, polymorphic: true
 
-
   # NOTE: Comments belong to a user
   belongs_to :user
 
@@ -47,9 +46,9 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
-  
+
   private
-   
+
   # Send notification email about a new comment in an event
   def send_notification
       Mailbot.delay.send_email_for_new_comment(self)
