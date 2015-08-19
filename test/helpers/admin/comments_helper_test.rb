@@ -1,4 +1,6 @@
 require 'test_helper'
 
-class Admin::CommentsHelperTest < ActionView::TestCase
+module Admin
+  class CommentsHelperTest < ActionView::TestCase
+  end
 end
