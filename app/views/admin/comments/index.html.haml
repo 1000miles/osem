@@ -1,25 +1,33 @@
 %header
 %br
-.row
-  .col-md-12
-    %ul.nav.nav-tabs#recentTable
-      %li.active
-        %a{:href=>"#unread_comments", "data-toggle"=>"tab"}
-          %span.fa.fa-comment
-          Unread
-      %li
-        %a{:href=>"#posted_comments", "data-toggle"=>"tab"}
-          %span.fa.fa.fa-comments-o
-          Posted
-      %li
-        %a{:href=>"#all_comments", "data-toggle"=>"tab"}
-          %span.fa.fa.fa-comments
-          All
+-# not ready
+.container-fluid
+  .row
+    .col-md-2
+      %ul.nav.nav-pills
+        %li.nav-stacked
+          %a{:href=>"#", "data-toggle"=>"tab"}
+            %span.fa.fa-comments
+            Comments
+    .col-md-10
+      %ul.nav.nav-tabs#recentTable
+        %li.active
+          %a{:href=>"#unread_comments", "data-toggle"=>"tab"}
+            %span.fa.fa-comment
+            Unread
+        %li
+          %a{:href=>"#posted_comments", "data-toggle"=>"tab"}
+            %span.fa.fa.fa-comments-o
+            Posted
+        %li
+          %a{:href=>"#all_comments", "data-toggle"=>"tab"}
+            %span.fa.fa.fa-comments
+            All
 
-    .tab-content
-      .tab-pane.active#unread_comments
-        = render partial: 'unread_comments', locals: {unread_comments: @unread_comments}
-      .tab-pane#posted_comments
-        = render partial: 'posted_comments', locals: {posted_comments: @posted_comments}
-      .tab-pane#all_comments
-        = render partial: 'all_comments', locals: {comments: @comments}
+      .tab-content
+        .tab-pane.active#unread_comments
+          =render partial: 'unread_comments', locals: {unread_comments: @unread_comments}
+        .tab-pane#posted_comments
+          =render partial: 'posted_comments', locals: {posted_comments: @posted_comments}
+        .tab-pane#all_comments
+          =render partial: 'all_comments', locals: {comments: @comments}
