@@ -1,8 +1,11 @@
-%h1 Comments (#{@comments.all.length})
+%section
+%header
+  %h1 Comments (#{@comments.all.length})
 %br
 - if @comments && !@comments.empty?
+  %section
   .table-responsive
-    %table.table
+    %table.table.well
       %thead
         %tr
           %th #

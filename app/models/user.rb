@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   has_many :event_users, dependent: :destroy
   has_many :events, -> { uniq }, through: :event_users
+  has_many :comments
   has_many :registrations, dependent: :destroy
   has_many :ticket_purchases, dependent: :destroy
   has_many :tickets, through: :ticket_purchases, source: :ticket
