@@ -51,7 +51,7 @@ class Comment < ActiveRecord::Base
   end
 
   scope :find_since_last_login, lambda { |user|
-    where(created_at: (user.last_sign_in_at..Time.now).order('created_at DESC'))
+    where(created_at: (user.last_sign_in_at..Time.now)).order('created_at DESC')
   }
 
   private
