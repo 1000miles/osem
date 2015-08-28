@@ -46,9 +46,7 @@ module Admin
     load_and_authorize_resource
 
     def index
-      @comments = Comment.all.order(created_at: :desc)
-      @unread_comments = unread
-      @posted_comments = posted
+      @ordered_events = Event.order(:title).all
     end
 >>>>>>> 748ebee... solve rubocop offenses
 

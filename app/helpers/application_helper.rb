@@ -263,6 +263,11 @@ module ApplicationHelper
     end
   end
 
+  # @param [:organizer, :cfp] conference
+  def can_manage_comments(conference)
+    (current_user.has_role? :organizer, conference) || (current_user.has_role? :cfp, conference)
+  end
+
   def sign_in_path
     if CONFIG['authentication']['ichain']['enabled']
       new_user_ichain_session_path
@@ -277,5 +282,9 @@ module ApplicationHelper
     else
       new_user_registration_path
     end
+  end
+
+  def unread_notifications(user)
+    Comment.find_since_last_login(user)
   end
 end
