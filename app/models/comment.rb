@@ -41,6 +41,9 @@ class Comment < ActiveRecord::Base
     where(commentable_type: commentable_str.to_s, commentable_id: commentable_id).order('created_at DESC')
   }
 
+  scope :find_since_last_login, lambda { |user|
+    where(created_at: (user.last_sign_in_at..Time.now)).order(created_at: :desc)
+  }
   # Helper class method to look up a commentable object
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)

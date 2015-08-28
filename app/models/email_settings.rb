@@ -77,6 +77,8 @@ class EmailSettings < ActiveRecord::Base
     parse_template(conf_update_template, values)
   end
 
+  private
+
   def parse_template(text, values)
     values.each do |key, value|
       if value.kind_of?(Date)

@@ -1,23 +1,15 @@
-%h1 Comments (#{posted_comments(current_user).length})
-%br
-- if @posted_comments && !@posted_comments.empty?
-  .table-responsive
-    %table.table
-      %thead
-        %tr
-          %th #
-          %th Your Comments
-          %th Event
-          %th Conference
-          %th Post Date
-        - @posted_comments.each_with_index do |comment, index|
-          %tbody
-            %tr
-              %td= index + 1
-              %td= link_to h(truncate(comment.body, :length => 150)), admin_conference_event_path(comment.commentable.conference.short_title, comment.commentable_id)
-              %td= link_to comment.commentable.title, admin_conference_event_path(comment.commentable.conference.short_title, comment.commentable)
-              %td= link_to comment.commentable.conference.title, admin_conference_path(comment.commentable.conference.short_title)
-              %td= comment.created_at
-- else
-  %h5.text-warning.text-center
-    No comments!
+.panel.well
+  -@ordered_events.each do |event|
+    - if event.comment_threads.find_comments_by_user(current_user).count > 0
+      %panel
+        %panel.panel-header
+          %h4.title
+            = link_to event.title, admin_conference_event_path(event.conference.short_title, event)
+          %hr
+        -event.comment_threads.find_comments_by_user(current_user).each do |comment|
+          %panel-body
+            %ul.list-unstyled
+              %li= comment.body
+              %li Created at: #{comment.created_at}
+        %hr
+

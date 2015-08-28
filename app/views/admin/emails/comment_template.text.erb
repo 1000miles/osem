@@ -1,11 +1,10 @@
-Dear {name},
+Dear <%= @user.name %>,
 
-  	User {comment_user} posted a new comment for event {eventtitle} of {conference}.
+User <%= @comment.user.name %> posted a new comment for event <%= @event.title %> of <%= @conference.short_title %> .
 
-  	" {comment_body}" 
+"<%= @comment.body %>"
 
-  	To reply to this comment, please go to {comment_reply}
+To reply to this comment, please go to <%=  h( admin_conference_event_url(@conference.short_title, @event)) %>
 
-  	Kind regards,
-  	Your {conference}
-  	
+Best wishes,
+<%= @conference.short_title %> Team

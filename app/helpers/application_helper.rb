@@ -263,7 +263,6 @@ module ApplicationHelper
     end
   end
 
-  # @param [:organizer, :cfp] conference
   def can_manage_comments(conference)
     (current_user.has_role? :organizer, conference) || (current_user.has_role? :cfp, conference)
   end
