@@ -28,7 +28,6 @@ module Admin
       @recent_events = Event.limit(5).order(created_at: :desc)
       @recent_registrations = Registration.limit(5).order(created_at: :desc)
       @unread_comments = Comment.limit(15).order(created_at: :desc)
-
       @top_submitter = Conference.get_top_submitter
 
       @submissions = {}

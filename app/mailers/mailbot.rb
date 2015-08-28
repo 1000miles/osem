@@ -90,13 +90,18 @@ class Mailbot < ActionMailer::Base
   end
 
   def send_email_for_new_comment(comment)
-    event = comment.commentable
-    conference = event.conference
-    recipients = User.comment_notifiable(conference) # connected to scope in user.rb
+    @comment = comment
+    @event = @comment.commentable
+    @conference = @event.conference
+    recipients = User.comment_notifiable(@conference) # connected to scope in user.rb
     recipients.each do |user|
+      @user = user
       build_email(conference,
-                  user.email, " A new comment has been posted for #{event.title}",
-                  conference.email_settings.generate_email_on_comment_create(conference, event, comment, user)
+                  user.email,
+                  "A new comment has been posted for #{@event.title}",
+                  body: comment.body,
+                  template_path: 'admin/emails',
+                  template_name: 'comment_template'
                  )
     end
   end

@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :commentable, :body, :user_id
   validates_presence_of :body
   validates_presence_of :user
-  after_create :send_notification, :group_comments
+  after_create :send_notification
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
@@ -46,6 +46,10 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+  scope :find_since_last_login, lambda { |user|
+    where(created_at: (user.last_sign_in_at..Time.now).order('created_at DESC'))
+  }
 
   private
 
