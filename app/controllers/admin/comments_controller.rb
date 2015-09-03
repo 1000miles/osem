@@ -46,7 +46,7 @@ module Admin
     load_and_authorize_resource
 
     def index
-      @ordered_events = Event.order(:title).all
+      @conferences_available = Conference.with_roles([:admin, :organizer, :cfp], current_user)
     end
 >>>>>>> 748ebee... solve rubocop offenses
 

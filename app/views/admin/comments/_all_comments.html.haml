@@ -26,7 +26,3 @@
               %td= link_to comment.commentable.title, admin_conference_event_path(comment.commentable.conference.short_title, comment.commentable)
               %td= link_to comment.commentable.conference.title, admin_conference_path(comment.commentable.conference.short_title)
               %td= comment.created_at
-- else
-  %h5.text-warning.text-center
-    No comments!
-

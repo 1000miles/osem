@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - @posted_comments.each do |conference, events|
   .well
     %p.h4= conference.title
@@ -43,3 +44,22 @@
   %h5.text-warning.text-center
     No comments!
 >>>>>>> fd5f980... add comments partials (unread, all, posted) to comments tab panes view
+=======
+.panel.well
+  - @conferences_available.each do |conference|
+    - conference.events.each do |event|
+      - if event.comment_threads.find_comments_by_user(current_user).count > 0
+        %panel
+          %panel.panel-header
+            %h4.title
+              = link_to event.title, admin_conference_event_path(event.conference.short_title, event)
+              %div
+              = conference.title
+            %hr
+          -event.comment_threads.find_comments_by_user(current_user).each do |comment|
+            %panel-body
+              %ul.list-unstyled
+                %li= comment.body
+                %li Created at: #{comment.created_at}
+          %hr
+>>>>>>> d180373... restrict accessibility by roles
