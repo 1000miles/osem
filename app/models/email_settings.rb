@@ -10,10 +10,9 @@ class EmailSettings < ActiveRecord::Base
                   :send_on_venue_update, :venue_update_subject, :venue_update_template,
                   :send_on_call_for_papers_dates_updates, :send_on_call_for_papers_schedule_public,
                   :call_for_papers_schedule_public_subject, :call_for_papers_dates_updates_subject,
-                  :call_for_papers_schedule_public_template, :call_for_papers_dates_updates_template,
-                  :comment_subject, :comment_template
+                  :call_for_papers_schedule_public_template, :call_for_papers_dates_updates_template
 
-  def get_values(conference, user, event = nil, comment = nil)
+  def get_values(conference, user, event = nil)
     h = {
       'email' => user.email,
       'name' => user.name,
@@ -56,14 +55,6 @@ class EmailSettings < ActiveRecord::Base
                            conference.short_title, host: CONFIG['url_for_emails'])
     end
 
-    # if there is a comment for an event, apply the hash for comment parts (body, user, reply) which is needed in email view
-    if comment
-      h['comment_body'] = comment.body # show comment within comment body
-      h['comment_user'] = comment.user.name # show user name of commenter
-      h['comment_reply'] = Rails.application.routes.url_helpers.admin_conference_event_url(
-                            conference.short_title, event, host: CONFIG['url_for_emails']) # show link & title of conference
-    end
-
     h
   end
 
@@ -88,18 +79,5 @@ class EmailSettings < ActiveRecord::Base
       end
     end
     text
-  end
-
-# generate a subject when a comment is created & pass all related parameters (subject, event)
-  def generate_subject_on_comment_create(comment_subject, event)
-    parse_template(comment_subject, eventtitle: event.title) # parse the template with subject & event title
-  end
-
-# generate an email when a comment is posted & pass all related parameters
-  def generate_email_on_comment_create(conference, event, comment, user)
-    values = get_values(conference, user, event, comment) # get the values with related parameters
-    # parse the template with template name & given values
-    comment_template = File.read("#{Rails.root}/app/views/admin/emails/comment_template.text.erb")
-    parse_template(comment_template, values)
   end
 end

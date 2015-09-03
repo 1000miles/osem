@@ -89,6 +89,7 @@ class Mailbot < ActionMailer::Base
     end
   end
 
+=begin
   def send_email_for_new_comment(comment)
     @comment = comment
     @event = @comment.commentable
@@ -105,8 +106,9 @@ class Mailbot < ActionMailer::Base
                  )
     end
   end
+=end
 
-  def send_notification_email_for_comment(comment)
+  def send_email_for_new_comment(comment)
     @comment = comment
     @event = @comment.commentable
     @conference = @event.conference

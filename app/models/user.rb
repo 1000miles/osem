@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   devise(*devise_modules)
 
-    has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles
   has_many :openids
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role_id, :role_ids,
@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
 
   has_many :event_users, dependent: :destroy
   has_many :events, -> { uniq }, through: :event_users
-  has_many :comments
   has_many :registrations, dependent: :destroy
   has_many :ticket_purchases, dependent: :destroy
   has_many :tickets, through: :ticket_purchases, source: :ticket
