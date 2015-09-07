@@ -47,7 +47,7 @@
               = check_box_tag "#{@conference.short_title}_#{registration.id}", registration.id, registration.attended,
                 class: 'switch-checkbox', method: :patch,
                 url: toggle_attendance_admin_conference_registration_path(@conference.short_title, id: registration.id)+"?attended=",
-                data: { size: "small",
+                data: { size: "large",
                         on_color: 'success',
                         off_color: 'warning',
                         on_text: 'Present',

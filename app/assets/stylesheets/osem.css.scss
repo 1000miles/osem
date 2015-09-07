@@ -57,6 +57,23 @@ fieldset {
 
 .bootstrap-switch { height: 1.7em }
 
+.bootstrap-switch.bootstrap-switch-large {
+  min-height: 2.1em;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+  min-height: 2.1em;
+}
+
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-label {
+  line-height: 13px !important;
+  font-size: 15px !important;
+  padding: 9px !important;
+}
+
 .comment-reply{
   padding-top: 40px;
 }
