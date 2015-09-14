@@ -1,16 +1,25 @@
+%div.boxed-group
 - @conferences_available.each do |conference|
   - conference.events.each do |event|
     - if event.comment_threads.count > 0
-      .panel.panel-default
-        .panel-heading
-          %h4.title= conference.title
-        .panel-body
-          %ul.list-group
-            %li.list-group-item
-              %div.list-group-item-heading
-                %h4.title= link_to event.title, admin_conference_event_path(event.conference.short_title, event)
-              %div.list-group-item-text
-              - event.comment_threads.order(created_at: :desc).each do |comment|
-                %hr
-                %h5.strong Posted by: #{comment.user.name} | Created at: #{comment.created_at}
-                %p= comment.body
+      %div.boxed-group-inner
+        .panel.panel-default
+          .panel-heading
+            %h4.title.panel-title= conference.title
+          .panel-body
+            %div.container
+            .row
+              %div.col-md-12
+                %ul.list-group
+                  %li.list-group-item
+                    %div.list-group-item-heading
+                      %h4.title= link_to event.title, admin_conference_event_path(event.conference.short_title, event)
+                    %div.list-group-item-text
+                    - event.comment_threads.order(created_at: :desc).each do |comment|
+                      %hr
+                      %h5.strong Posted by: #{comment.user.name} | Created at: #{comment.created_at}
+                      %p= comment.body
+                  %li.list-group-item
+                    .panel-title
+                    See more Comments:
+                    = link_to "#"
