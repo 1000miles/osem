@@ -1,16 +1,12 @@
 - @conferences_available.each do |conference|
-  - conference.events.each do |event|
-    - if event.comment_threads.find_since_last_login(current_user).count > 0
-      .well
-        %h3.title
-          %p.h4= conference.title
-          = link_to event.title, admin_conference_event_path(event.conference.short_title, event)
-        -event.comment_threads.find_since_last_login(current_user).each do |comment|
+  .panel.panel-default
+    .panel-heading
+      %h4.title.panel-title= conference.title
+    .panel-body
+      - conference.events.each do |event|
+        .box{:style => "padding-bottom:20px;"}
+          %h4.title= link_to event.title, admin_conference_event_path(event.conference.short_title, event)
           %hr
-            %ul.list-unstyled
-              %ul.list-inline
-                %li
-                  %h5.strong Posted by: #{comment.user.name}
-                %li
-                  %h5.strong Created at: #{comment.created_at}
-              %li= comment.body
+          - event.comment_threads.find_since_last_login(current_user).each do |comment|
+            %h5.strong Posted by: #{comment.user.name} | Created at: #{comment.created_at}
+            %p{:style => "padding-bottom: 20px;"}= comment.body
