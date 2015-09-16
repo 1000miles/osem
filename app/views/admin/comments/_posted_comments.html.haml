@@ -1,16 +1,13 @@
-- @posted_comments.each do |conference, events|
-  .well
-    %p.h4= conference.title
-    - events.each do |event, comments|
-      %h3.title
-        = link_to event.title, admin_conference_event_path(event.conference.short_title, event)
-      %body
-        - comments.each do |comment|
+- @conferences_available.each do |conference|
+  .panel.panel-default
+    .panel-heading
+      %h4.title.panel-title= conference.title
+    .panel-body
+      - conference.events.each do |event|
+        .box{:style => "padding-bottom:10px;"}
+          %h4.title= link_to event.title, admin_conference_event_path(event.conference.short_title, event)
           %hr
-          %ul.list-unstyled
-            %ul.list-inline
-              %li
-                %h5.strong Posted by: #{comment.user.name}
-              %li
-                %h5.strong Created at: #{comment.created_at}
-            %li= comment.body
+          - event.comment_threads.find_comments_by_user(current_user).each do |comment|
+            %h5.strong Created at: #{comment.created_at}
+            %p{:style => "padding-bottom: 20px;"}= comment.body
+
