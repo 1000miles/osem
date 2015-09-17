@@ -1,14 +1,12 @@
-- @conferences_available.each do |conference|
+- @comments.each do |conference, events|
   .panel.panel-default
     .panel-heading
       %h4.title.panel-title= conference.title
     .panel-body
       - conference.events.each do |event|
-        // use padding for last comment before next event title //
-        .box{:style => "padding-bottom:20px;"}
+        .box
           %h4.title= link_to event.title, admin_conference_event_path(event.conference.short_title, event)
           %hr
           - event.comment_threads.order(created_at: :desc).each do |comment|
             %h5.strong Posted by: #{comment.user.name} | Created at: #{comment.created_at}
-            // use padding for better readability after each comment //
-            %p{:style => "padding-bottom: 20px;"}= comment.body
+            %p= comment.body
