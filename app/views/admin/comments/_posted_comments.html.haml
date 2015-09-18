@@ -1,0 +1,14 @@
+- @conferences_available.each do |conference|
+  - conference.events.each do |event|
+    - if event.comment_threads.find_comments_by_user(current_user).count > 0
+      .well
+        %h3.title
+          %p.h4= conference.title
+          = link_to event.title, admin_conference_event_path(event.conference.short_title, event)
+        -event.comment_threads.find_comments_by_user(current_user).each do |comment|
+          %hr
+          %ul.list-unstyled
+            %ul.list-inline
+              %li
+                %h5.strong Created at: #{comment.created_at}
+            %li= comment.body

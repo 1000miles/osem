@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415121038) do
+ActiveRecord::Schema.define(version: 20150813133801) do
 
   create_table "ahoy_events", force: true do |t|
     t.uuid     "visit_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150415121038) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
+    t.boolean  "unread",                      default: false
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
@@ -187,6 +188,9 @@ ActiveRecord::Schema.define(version: 20150415121038) do
     t.string   "call_for_papers_dates_updates_subject"
     t.text     "call_for_papers_schedule_public_template"
     t.text     "call_for_papers_dates_updates_template"
+    t.boolean  "send_on_comment",                                default: true
+    t.string   "comment_subject",                                default: "A new comment has been posted for {eventtitle}"
+    t.text     "comment_template",                               default: "Dear {name},\n\n  \tUser {comment_user} posted a new comment for event {eventtitle} of {conference}.\n\n  \t\" {comment_body}\" \n\n  \tTo reply to this comment, please go to {comment_reply}\n\n  \tKind regards,\n  \tYour {conference}\n  \t"
   end
 
   create_table "event_types", force: true do |t|

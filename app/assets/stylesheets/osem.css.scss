@@ -57,6 +57,23 @@ fieldset {
 
 .bootstrap-switch { height: 1.7em }
 
+.bootstrap-switch.bootstrap-switch-large {
+  min-height: 2.125em;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+  min-height: 2.125em;
+}
+
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-label {
+  line-height: 1.42857em !important;
+  font-size: 14px !important;
+  padding: 7px 9px 9px !important;
+}
+
 .comment-reply{
   padding-top: 40px;
 }
@@ -71,4 +88,11 @@ p.comment-body {
 
 #account-already {
   font-size: 0.6em;
+}
+
+#notifications-dropdown h5 {
+  font-weight: bold;
+  background-color: #F0AD4E;
+  color: #fff;
+  padding: 10px 20px;
 }
