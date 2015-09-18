@@ -21,14 +21,7 @@
     = link_to(destroy_user_session_path, :method=>'delete') do
       %span.fa.fa-minus
       Sign out
-<<<<<<< HEAD
 - if can? :access, Admin
-=======
-- if current_user.is_admin || (current_user.has_any_role? :admin, {:name => :organizer, :resource => :any},
-                                                                  {:name => :cfp, :resource => :any},
-                                                                  {:name => :info_desk, :resource => :any},
-                                                                  {:name => :volunteer_coordinator, :resource => :any})
->>>>>>> 70f9375... refactor comments_notifications
   %li.divider
     %li
       - if Conference.any?
