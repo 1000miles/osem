@@ -13,18 +13,7 @@
         %ul.nav.navbar-nav#splash-nav
           = content_for :splash_nav
       -if user_signed_in?
-        %ul.nav.navbar-nav.navbar-right
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "current-user-detail"}
-              - if not current_user.name.blank?
-                #{current_user.name}
-              - else
-                #{current_user.email}
-              = image_tag(current_user.gravatar_url(size: '18'), title: "Yo #{current_user.name}!", :alt => '')
-              %b.caret
-            %ul.dropdown-menu
-              = render 'layouts/user_menu'
-        - if can? :manage, Comment
+        .btn-group.pull-right
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "current-user-detail"}
@@ -39,15 +28,18 @@
           - if can? :index, Comment
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", id: "unread-comments-preview"}
-                  - if unread_notifications(current_user)
-                    Notifications (#{unread_notifications(current_user).length})
-                    %b.caret
-                    %ul.dropdown-menu
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Notifications (#{unread_notifications(current_user).length})
+                  %span.fa.fa-comment
+                  %b.caret
+                  %ul.dropdown-menu
+                    - if unread_notifications(current_user).length > 0
+                      %li.dropdown-header New Comments for:
                       - unread_notifications(current_user).limit(5).each do |unread_comment|
-                        %li= link_to("New comment for: #{unread_comment.commentable.title}", admin_conference_event_path(unread_comment.commentable.conference.short_title, unread_comment.commentable_id))
+                        %li= link_to("#{unread_comment.commentable.title}", admin_conference_event_path(unread_comment.commentable.conference.short_title, unread_comment.commentable_id))
                       %li.divider
-                      %li= link_to 'See comments', admin_comments_path
+                      %li= link_to "See all unread Comments (#{unread_notifications(current_user).length})", :href => "/unread_comments"
+                    %li= link_to "See all Comments (#{Comment.all.length})", :href => "/all_comments"
       - else
         %ul.nav.navbar-nav.navbar-right
           - if CONFIG['authentication']['ichain']['enabled']
