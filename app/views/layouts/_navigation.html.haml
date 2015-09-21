@@ -28,18 +28,18 @@
           - if can? :index, Comment
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %a.dropdown-toggle{"data-toggle" => "dropdown", id: "notification-dropdown"}
                   Notifications (#{unread_notifications(current_user).length})
                   %span.fa.fa-comment
                   %b.caret
                   %ul.dropdown-menu
                     - if unread_notifications(current_user).length > 0
-                      %li.dropdown-header New Comments for:
+                      %li.dropdown-header Last 5 Comments for:
                       - unread_notifications(current_user).limit(5).each do |unread_comment|
                         %li= link_to("#{unread_comment.commentable.title}", admin_conference_event_path(unread_comment.commentable.conference.short_title, unread_comment.commentable_id))
                       %li.divider
-                      %li= link_to "See all unread Comments (#{unread_notifications(current_user).length})", :href => "/unread_comments"
-                    %li= link_to "See all Comments (#{Comment.all.length})", :href => "/all_comments"
+                      %li= link_to "See all unread Comments (#{unread_notifications(current_user).length})",admin_comments_path(anchor: 'unread_comments')
+                    %li= link_to "Go to Comments Page", admin_comments_path
       - else
         %ul.nav.navbar-nav.navbar-right
           - if CONFIG['authentication']['ichain']['enabled']
