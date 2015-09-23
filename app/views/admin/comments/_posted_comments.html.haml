@@ -1,7 +1,7 @@
 - @posted_comments.each do |conference, events|
   .panel.panel-default
     .panel-heading
-      %h4.title.panel-title= conference.short_title
+      %h4.title.panel-title= conference.title
     .panel-body
       - conference.events.each do |event|
         .box
