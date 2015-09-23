@@ -114,4 +114,3 @@ class Mailbot < ActionMailer::Base
         )
   end
 end
-
