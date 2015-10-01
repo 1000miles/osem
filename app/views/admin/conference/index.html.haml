@@ -75,6 +75,7 @@
         %a{:href=>"#recent_submissions", "data-toggle"=>"tab"}
           %span.fa.fa-file-text
           Recent Submissions
+
     .tab-content
       .tab-pane.active#recent_user
         = render partial: 'recent_users', locals: {recent_users: @recent_users}

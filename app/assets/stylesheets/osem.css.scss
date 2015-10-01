@@ -72,3 +72,18 @@ p.comment-body {
 #account-already {
   font-size: 0.6em;
 }
+
+/* comments views pane: use padding-bottom before next comment box */
+.panel.panel-default .panel-body .box {
+  padding-bottom: 20px;
+}
+
+/* comments views pane: use padding-bottom after each comment */
+.panel.panel-default .panel-body p {
+  padding-bottom: 20px;
+}
+
+/* Disable underline for dropdown heading */
+.dropdown-header, a:hover, a:focus {
+  text-decoration: none;
+}
